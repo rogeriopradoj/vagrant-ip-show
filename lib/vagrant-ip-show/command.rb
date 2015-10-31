@@ -9,7 +9,7 @@ module Vagrant
 
                     @logger.info("Getting ips of vm networks")
                     ssh_opts = {extra_args: ['-q']} # make it quiet
-                    env = vm.action(:ssh_run, ssh_run_command: "ifconfig | grep 'inet addr:' | grep -v 127.0.0.1 | sed -e 's/Bcast//' | cut -d: -f2", ssh_opts: ssh_opts)
+                    env = vm.action(:ssh_run, ssh_run_command: "sudo ifconfig | grep 'inet addr:' | grep -v 127.0.0.1 | sed -e 's/Bcast//' | cut -d: -f2", ssh_opts: ssh_opts)
 
                     status = env[:ssh_run_exit_status] || 0
                     return status
