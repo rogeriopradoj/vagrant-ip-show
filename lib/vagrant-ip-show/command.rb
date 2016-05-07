@@ -2,22 +2,22 @@
 module Vagrant
     module IpShow
         class Command < Vagrant.plugin('2', :command)
-		def self.synopsis
-			"show all VM ip addresses"
-		end
+            def self.synopsis
+                "show all VM ip addresses"
+            end
 
-		def execute
-			options = {}
-			opts = OptionParser.new do |o|
-			o.banner = "Usage: vagrant ip-show [vmname]"
-			o.separator ""
-			o.separator "Options:"
-			o.separator ""
-		end
+            def execute
+                options = {}
+                opts = OptionParser.new do |o|
+                    o.banner = "Usage: vagrant ip-show [vmname]"
+                    o.separator ""
+                    o.separator "Options:"
+                    o.separator ""
+                end
 
-		# Parse the options and return if we don't have any target.
-		argv = parse_options(opts)
-		return if !argv
+                # Parse the options and return if we don't have any target.
+                argv = parse_options(opts)
+                return if !argv
 
                 # Execute the actual SSH
                 with_target_vms(argv, single_target: true) do |vm|
